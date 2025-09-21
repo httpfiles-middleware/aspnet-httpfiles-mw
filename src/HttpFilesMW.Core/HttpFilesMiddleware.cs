@@ -33,7 +33,7 @@ public class HttpFilesMiddleware
 
             var httpFilesContent = await this.generator.GenerateAsync(apiExplorer);
             context.Response.ContentType = "text/plain";
-            context.Response.Headers["Content-Disposition"] = "inline";
+            context.Response.Headers.ContentDisposition = "inline";
 
             await context.Response.WriteAsync(httpFilesContent);
         }
