@@ -31,7 +31,7 @@ public class HttpFilesMiddlewareTests
     public void Constructor_WhenNextIsNull_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => 
+        var exception = Assert.Throws<ArgumentNullException>(() =>
             new HttpFilesMiddleware(null!, this.mockGenerator.Object, this.mockLogger.Object));
 
         exception.ParamName.Should().Be("next");
@@ -41,7 +41,7 @@ public class HttpFilesMiddlewareTests
     public void Constructor_WhenGeneratorIsNull_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => 
+        var exception = Assert.Throws<ArgumentNullException>(() =>
             new HttpFilesMiddleware(this.mockNext.Object, null!, this.mockLogger.Object));
 
         exception.ParamName.Should().Be("generator");
@@ -51,7 +51,7 @@ public class HttpFilesMiddlewareTests
     public void Constructor_WhenLoggerIsNull_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => 
+        var exception = Assert.Throws<ArgumentNullException>(() =>
             new HttpFilesMiddleware(this.mockNext.Object, this.mockGenerator.Object, null!));
 
         exception.ParamName.Should().Be("logger");
@@ -61,7 +61,7 @@ public class HttpFilesMiddlewareTests
     public void Constructor_WhenAllDependenciesAreNull_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => 
+        var exception = Assert.Throws<ArgumentNullException>(() =>
             new HttpFilesMiddleware(null!, null!, null!));
 
         // Should fail on the first null parameter (next)
@@ -132,7 +132,7 @@ public class HttpFilesMiddlewareTests
         // Assert
         this.mockNext.Verify(n => n(context), Times.Once);
         this.mockGenerator.Verify(m => m.GenerateAsync(It.IsAny<IApiDescriptionGroupCollectionProvider>()), Times.Never);
-        
+
         // Verify no logging for HTTP files handling
         this.mockLogger.Verify(
             x => x.Log(
