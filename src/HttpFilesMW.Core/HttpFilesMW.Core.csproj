@@ -12,6 +12,7 @@
     <PackageProjectUrl>https://github.com/httpfiles-middleware/aspnet-httpfiles-mw</PackageProjectUrl>
     <RepositoryUrl>https://github.com/httpfiles-middleware/aspnet-httpfiles-mw</RepositoryUrl>
     <PackageTags>aspnetcore;middleware;http-files;api</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,10 @@
     <Package Include="Microsoft.AspNetCore.Http.Abstractions" />
     <Package Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <Package Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
