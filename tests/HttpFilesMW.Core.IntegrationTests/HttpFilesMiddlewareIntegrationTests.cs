@@ -54,7 +54,7 @@ public class HttpFilesMiddlewareIntegrationTests : IDisposable
     public async Task GivenInvocationToMiddlewarePath_WhenGetHttpFiles_ThenReturnsGeneratedHttpFiles()
     {
         // Act
-        var response = await client.GetAsync("/http-files");
+        var response = await this.client.GetAsync("/http-files");
 
         // Assert
         response.IsSuccessStatusCode.Should().BeTrue();
