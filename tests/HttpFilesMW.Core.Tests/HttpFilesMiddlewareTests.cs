@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="HttpFilesMiddlewareTests.cs" company="HttpFilesMW">
-// HttpFilesMW. All rights reserved.
+// Copyright © HttpFilesMW. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -25,6 +25,57 @@ public class HttpFilesMiddlewareTests
         this.mockGenerator = new Mock<IApiExplorerToHttpFileGenerator>();
         this.mockLogger = new Mock<ILogger<HttpFilesMiddleware>>();
         this.middleware = new HttpFilesMiddleware(this.mockNext.Object, this.mockGenerator.Object, this.mockLogger.Object);
+    }
+
+    [Fact]
+    public void Constructor_WhenNextIsNull_ThrowsArgumentNullException()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => 
+            new HttpFilesMiddleware(null!, this.mockGenerator.Object, this.mockLogger.Object));
+
+        exception.ParamName.Should().Be("next");
+    }
+
+    [Fact]
+    public void Constructor_WhenGeneratorIsNull_ThrowsArgumentNullException()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => 
+            new HttpFilesMiddleware(this.mockNext.Object, null!, this.mockLogger.Object));
+
+        exception.ParamName.Should().Be("generator");
+    }
+
+    [Fact]
+    public void Constructor_WhenLoggerIsNull_ThrowsArgumentNullException()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => 
+            new HttpFilesMiddleware(this.mockNext.Object, this.mockGenerator.Object, null!));
+
+        exception.ParamName.Should().Be("logger");
+    }
+
+    [Fact]
+    public void Constructor_WhenAllDependenciesAreNull_ThrowsArgumentNullException()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => 
+            new HttpFilesMiddleware(null!, null!, null!));
+
+        // Should fail on the first null parameter (next)
+        exception.ParamName.Should().Be("next");
+    }
+
+    [Fact]
+    public void Constructor_WhenAllDependenciesAreValid_CreatesInstanceSuccessfully()
+    {
+        // Arrange & Act
+        var middleware = new HttpFilesMiddleware(this.mockNext.Object, this.mockGenerator.Object, this.mockLogger.Object);
+
+        // Assert
+        middleware.Should().NotBeNull();
     }
 
     [Fact]
@@ -64,5 +115,32 @@ public class HttpFilesMiddlewareTests
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once);
+    }
+
+    [Fact]
+    public async Task InvokeAsync_WhenPathDoesNotStartWithHttpFiles_CallsNextMiddleware()
+    {
+        // Arrange
+        var context = new DefaultHttpContext();
+        context.Request.Path = "/api/test";
+
+        var apiExplorerMock = new Mock<IApiDescriptionGroupCollectionProvider>();
+
+        // Act
+        await this.middleware.InvokeAsync(context, apiExplorerMock.Object);
+
+        // Assert
+        this.mockNext.Verify(n => n(context), Times.Once);
+        this.mockGenerator.Verify(m => m.GenerateAsync(It.IsAny<IApiDescriptionGroupCollectionProvider>()), Times.Never);
+        
+        // Verify no logging for HTTP files handling
+        this.mockLogger.Verify(
+            x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Handling request for")),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Never);
     }
 }
