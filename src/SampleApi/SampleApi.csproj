@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HttpFilesMW.Core\HttpFilesMW.Core.csproj" />
+  </ItemGroup>
+
 </Project>

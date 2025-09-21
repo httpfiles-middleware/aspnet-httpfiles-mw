@@ -45,6 +45,7 @@ public class HttpFilesMiddlewareTests
 
         // Assert
         context.Response.ContentType.Should().Be("text/plain");
+        context.Response.Headers["Content-Disposition"].Should().Contain("inline");
 
         // Read the response body
         context.Response.Body.Seek(0, SeekOrigin.Begin);

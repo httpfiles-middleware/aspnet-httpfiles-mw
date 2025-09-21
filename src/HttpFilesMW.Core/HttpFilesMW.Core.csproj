@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <Package Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <Package Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <Package Include="Microsoft.Extensions.Logging.Abstractions" />
   </ItemGroup>
 

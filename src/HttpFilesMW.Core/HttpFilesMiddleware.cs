@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using HttpFilesMW.Core.Generators;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Logging;
@@ -28,9 +30,10 @@ public class HttpFilesMiddleware
         if (context.Request.Path.StartsWithSegments(Constants.HttpFilesPath, out var remainingPath))
         {
             this.logger.LogInformation("Handling request for {Path}", context.Request.Path);
-            context.Response.ContentType = "text/plain";
 
             var httpFilesContent = await this.generator.GenerateAsync(apiExplorer);
+            context.Response.ContentType = "text/plain";
+            context.Response.Headers["Content-Disposition"] = "inline";
 
             await context.Response.WriteAsync(httpFilesContent);
         }

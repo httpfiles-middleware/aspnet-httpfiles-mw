@@ -6,7 +6,7 @@
 
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace HttpFilesMW.Core;
+namespace HttpFilesMW.Core.Generators;
 public interface IApiExplorerToHttpFileGenerator
 {
     Task<string> GenerateAsync(IApiDescriptionGroupCollectionProvider apiExplorer);
