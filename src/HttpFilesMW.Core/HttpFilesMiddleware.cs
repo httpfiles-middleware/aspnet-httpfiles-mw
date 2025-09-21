@@ -37,12 +37,6 @@ public class HttpFilesMiddleware
 
             await context.Response.WriteAsync(httpFilesContent);
         }
-        else
-        {
-            this.logger.LogWarning("Request path {Path} does not start with the expected prefix {Prefix}", context.Request.Path, Constants.HttpFilesPath);
-            context.Response.StatusCode = StatusCodes.Status404NotFound;
-            return;
-        }
 
         await this.next(context);
     }
