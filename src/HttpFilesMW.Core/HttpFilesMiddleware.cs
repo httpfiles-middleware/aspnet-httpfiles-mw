@@ -40,5 +40,4 @@ public class HttpFilesMiddleware
 
         await this.next(context);
     }
-
 }

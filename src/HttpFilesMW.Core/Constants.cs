@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 namespace HttpFilesMW.Core;
-public class Constants
+public static class Constants
 {
     public const string HttpFilesPath = "/http-files";
 }
