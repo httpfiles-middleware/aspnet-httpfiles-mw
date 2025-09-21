@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "HttpFilesMW",
+      "copyrightText": "HttpFilesMW. All rights reserved.",
+      "headerDecoration": "-----------------------------------------------------------------------",
+      "xmlHeader": true,
+      "fileNamingConvention": "stylecop",
+      "documentExposedElements": false,
+      "documentInternalElements": false,
+      "documentInterfaces": false
+    },
+    "maintainabilityRules": {
+      "topLevelTypes": [ "class", "enum", "interface" ]
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace",
+      "systemUsingDirectivesFirst": true,
+      "blankLinesBetweenUsingGroups": "allow"
+    },
+    "layoutRules": {
+      "allowConsecutiveUsings": false
+    }
+  }
+}
