@@ -1,4 +1,14 @@
+// -----------------------------------------------------------------------
+// <copyright file="Program.cs" company="HttpFilesMW">
+// Copyright © HttpFilesMW. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System.Diagnostics.CodeAnalysis;
+
 using HttpFilesMW.Core;
+
+[assembly: ExcludeFromCodeCoverage]
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpFilesProcessing();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

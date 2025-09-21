@@ -1,7 +1,16 @@
+// -----------------------------------------------------------------------
+// <copyright file="WeatherForecastController.cs" company="HttpFilesMW">
+// Copyright © HttpFilesMW. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace SampleApi.Controllers;
 
+[ExcludeFromCodeCoverage]
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
@@ -11,11 +20,11 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<WeatherForecastController> logger;
 
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
-        _logger = logger;
+        this.logger = logger;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
