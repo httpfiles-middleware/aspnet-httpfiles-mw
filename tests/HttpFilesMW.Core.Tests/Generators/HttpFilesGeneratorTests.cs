@@ -72,13 +72,14 @@ public class HttpFilesGeneratorTests
         var collection = new ApiDescriptionGroupCollection(new List<ApiDescriptionGroup> { group }, 1);
 
         this.mockApiProfile.Setup(x => x.ApiDescriptionGroups).Returns(collection);
+        this.mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(new DefaultHttpContext());
 
         // Act
         var actual = this.generator.GenerateAsync();
 
         // Assert
         actual.Should().NotBeNull();
-        actual.GlobalVariables[Constants.HostAddressVariable].Should().Be("localhost");
+        actual.GlobalVariables[$"@{Constants.HostAddressVariable}"].Should().Be("://");
         actual.Requests.Count.Should().Be(1);
         //actual.Should().Be("""
         //    GET api/users

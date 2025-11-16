@@ -58,7 +58,7 @@ public class HttpFilesGenerator : IHttpFileGenerator
 
     private IDictionary<string, string> GetGlobalVariables()
     {
-        var (hostVariable, hostAddress) = this.GetHostAddress();
+        var (hostVariable, hostAddress) = this.GetHostAddressVariable();
         return new Dictionary<string, string>
         {
             { hostVariable, hostAddress },
@@ -82,7 +82,7 @@ public class HttpFilesGenerator : IHttpFileGenerator
         return requestEntries;
     }
 
-    private (string, string) GetHostAddress()
+    private (string, string) GetHostAddressVariable()
     {
         var request = this.contextAccessor.HttpContext?.Request;
         if (request == null)
