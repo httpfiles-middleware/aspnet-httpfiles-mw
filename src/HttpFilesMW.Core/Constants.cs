@@ -8,4 +8,6 @@ namespace HttpFilesMW.Core;
 public static class Constants
 {
     public const string HttpFilesPath = "/http-files";
+
+    public const string HostAddressVariable = "HostAddress";
 }

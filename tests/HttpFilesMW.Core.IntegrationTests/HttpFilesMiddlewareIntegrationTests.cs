@@ -63,15 +63,17 @@ public class HttpFilesMiddlewareIntegrationTests : IDisposable
 
         var responseContent = await response.Content.ReadAsStringAsync();
         responseContent.Should().Be("""
-            GET api/Test
+            @HostAddress=http://localhost
+
+            GET {{HostAddress}}/api/Test
 
             ###
 
-            GET api/Test/{id}
+            GET {{HostAddress}}/api/Test/{id}
 
             ###
 
-            POST api/Test
+            POST {{HostAddress}}/api/Test
 
             ###
             """);

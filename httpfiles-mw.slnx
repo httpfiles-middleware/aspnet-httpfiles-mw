@@ -1,0 +1,30 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/workflows/build.yml" />
+    <File Path=".github/workflows/prerelease.yml" />
+    <File Path=".github/workflows/quality-gate.yml" />
+    <File Path=".github/workflows/release.yml" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+    <File Path="stylecop.json" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/HttpFilesMW.Core/HttpFilesMW.Core.csproj" />
+    <Project Path="src/SampleApi/SampleApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HttpFilesMW.Core.IntegrationTests/HttpFilesMW.Core.IntegrationTests.csproj" />
+    <Project Path="tests/HttpFilesMW.Core.Tests/HttpFilesMW.Core.Tests.csproj" />
+  </Folder>
+</Solution>
